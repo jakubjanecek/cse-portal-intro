@@ -32,6 +32,12 @@ public class Main {
         List<Event> queue = new ArrayList(Arrays.asList(ev1, ev2, ev3));
         handleEvents(queue);
 
+        System.out.println(genericSize("test"));
+        System.out.println(genericSize(new int[]{1, 2, 3}));
+        System.out.println(genericSize(new ArrayList(Arrays.asList(1, 2, 3))));
+        System.out.println(genericSize(new ObjectWithSize()));
+        System.out.println(genericSize(new Object()));
+
         System.out.println();
         System.out.println("COLLECTIONS");
 
@@ -118,5 +124,19 @@ public class Main {
 
     private static void throwEx() {
         throw new RuntimeException("fail");
+    }
+
+    private static int genericSize(Object obj) {
+        if (obj instanceof String) {
+            return ((String) obj).length();
+        } else if (obj instanceof int[]) {
+            return ((int[]) obj).length;
+        } else if (obj instanceof List) {
+            return ((List) obj).size();
+        } else if (obj instanceof ObjectWithSize) {
+            return ((ObjectWithSize) obj).count();
+        } else {
+            return -1;
+        }
     }
 }

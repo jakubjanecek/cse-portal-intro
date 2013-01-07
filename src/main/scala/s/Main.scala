@@ -41,6 +41,12 @@ object Main {
 
     handleEvents(queue)
 
+    println(genericSize("test"))
+    println(genericSize(Array(1, 2, 3)))
+    println(genericSize(List(1, 2, 3)))
+    println(genericSize(new ObjectWithSize))
+    println(genericSize(new AnyRef))
+
     println()
     println("COLLECTIONS")
     val collection = 1 to 100
@@ -87,6 +93,14 @@ object Main {
       termsAgreed <- None
     } yield FormResult(name, surname, age, termsAgreed)
     println(result2)
+  }
+
+  def genericSize(obj: AnyRef): Int = obj match {
+    case x: String => x.length
+    case x: Array[_] => x.length
+    case x: List[_] => x.size
+    case x: ObjectWithSize => x.count
+    case _ => -1
   }
 
 }
