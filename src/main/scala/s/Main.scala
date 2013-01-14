@@ -51,11 +51,12 @@ object Main {
     println("COLLECTIONS")
     val collection = 1 to 100
 
-    val sum = collection.fold(0)(_ + _)
+    val sum = collection.reduce(_ + _)
+    val sum1 = collection.reduce((x, y) => x + y)
     println("sum: " + sum)
 
-    val numberOfOdds = collection.filter(_ % 2 == 1).size
-    println("Number of odds: " + numberOfOdds)
+    val odds = collection.filter(_ % 2 == 1)
+    println("Number of odds: " + odds.size)
 
     println()
     println("OWN CONTROL STRUCTURES")
